@@ -23,14 +23,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          # For demo purposes - in production use proper issuer-uri
-          # issuer-uri: http://localhost:9000
+          # TODO: configure proper JWT issuer
           jwk-set-uri: http://localhost:9000/.well-known/jwks.json
 
 server:
   port: 8080
 
-# Swagger configuration  
 springdoc:
   api-docs:
     path: /v3/api-docs
@@ -38,7 +36,7 @@ springdoc:
     path: /swagger-ui.html
     operations-sorter: method
 
-# H2 Console (for development/testing when using H2 profile)
+# H2 profile for testing
 ---
 spring:
   config:

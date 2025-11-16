@@ -27,6 +27,7 @@ public class Book {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
+        // new books start as available
     }
     
     // Getters and Setters

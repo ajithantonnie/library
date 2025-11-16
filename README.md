@@ -1,60 +1,42 @@
-# SpringBooks Library Management API
+# Library Management System
 
-A comprehensive Spring Boot REST API for managing library operations including book management, member registration, and book borrowing/returning functionality.
+A Spring Boot REST API for managing library books and members.
 
-## 🚀 Features
+## Features
 
-- **Book Management**: Complete CRUD operations for books
-- **Member Management**: Register and manage library members
-- **Business Logic**: Secure book borrowing and returning with business rules
-- **Security**: OAuth2 Resource Server with JWT token validation
-- **Validation**: Input validation with detailed error messages
-- **Pagination**: Paginated responses for large datasets
-- **API Documentation**: Swagger/OpenAPI 3 documentation
-- **Database Support**: MySQL for production, H2 for development/testing
-- **Comprehensive Testing**: Unit and integration tests
+- Book CRUD operations
+- Member registration and management
+- Book borrowing and returning
+- JWT authentication
+- Input validation
+- Pagination support
+- Swagger documentation
+- MySQL and H2 database support
 
-## 🛠 Technologies Used
+## Tech Stack
 
-- **Java 17**
-- **Spring Boot 3.2.0**
-- **Spring Security 6** (OAuth2 Resource Server)
-- **Spring Data JPA**
-- **MySQL** (Production)
-- **H2 Database** (Development/Testing)
-- **Maven**
-- **JUnit 5**
-- **Mockito**
-- **Swagger/OpenAPI 3**
-- **Validation**: Input validation with proper error handling
-- **API Documentation**: Swagger/OpenAPI 3 integration
-- **Testing**: Comprehensive unit and integration tests
-- **Database**: MySQL support with H2 for testing
+- Java 17
+- Spring Boot 3.2.0
+- Spring Security (OAuth2)
+- Spring Data JPA
+- MySQL / H2
+- Maven
+- JUnit 5, Mockito
+- Swagger/OpenAPI
 
-## Technology Stack
+## Getting Started
 
-- **Framework**: Spring Boot 3.2.0
-- **Security**: Spring Security
-- **Database**: MySQL (Production), H2 (Testing)
-- **ORM**: JPA/Hibernate
-- **Validation**: Bean Validation (Jakarta)
-- **Documentation**: SpringDoc OpenAPI 3
-- **Testing**: JUnit 5, Mockito, Spring Boot Test
-- **Build Tool**: Maven
+### Requirements
 
-## 📦 Quick Start
-
-### Prerequisites
-
-- Java 17 or higher
+- Java 17+
 - Maven 3.6+
-- MySQL 8.0+ (for production profile)
+- MySQL (for production)
 
 ### Building the Application
 
 ```bash
 # Clone the repository
-git clone <your-repository-url>
+git clone https://github.com/ajithantonnie/library.git
 cd library
 
 # Build the application
@@ -92,15 +74,13 @@ SPRING_PROFILES_ACTIVE=h2 ./mvnw spring-boot:run
 
 The application will start on `http://localhost:8080`
 
-## 🔐 Authentication
+## Authentication
 
-This API is secured using OAuth2 Resource Server with JWT tokens. For demonstration purposes, a simple JWT configuration is provided.
+The API uses JWT tokens for authentication.
 
-### Using the API with Authentication
-
-For testing purposes, you can use basic authentication:
-- **Username**: `user`
-- **Password**: `password`
+For testing:
+- Username: `user`
+- Password: `password`
 
 #### Example with curl:
 ```bash
@@ -251,43 +231,22 @@ When running with the H2 profile:
 - **URL**: http://localhost:8080/v3/api-docs
 - Raw OpenAPI 3 specification in JSON format
 
-## 🎯 Business Rules
+## Business Rules
 
-### Book Borrowing Rules
-1. ✅ A book cannot be borrowed if it is already borrowed (`isBorrowed` is true)
-2. ✅ A member must exist to borrow a book
-3. ✅ A book must exist to be borrowed
-4. ✅ When successfully borrowed, the book's `isBorrowed` status is set to `true`
+- Books can only be borrowed if available
+- Members must exist to borrow books
+- Books can only be returned if currently borrowed
 
-### Book Returning Rules
-1. ✅ A book cannot be returned if it is not currently borrowed
-2. ✅ A book must exist to be returned
-3. ✅ When successfully returned, the book's `isBorrowed` status is set to `false`
+## Testing
 
-## 🧪 Testing
-
-The application includes comprehensive testing:
-
-### Running Tests
 ```bash
-# Run all tests
+# Run tests
 mvn test
-
-# Run specific test class
-mvn test -Dtest=LibraryServiceTest
-
-# Run tests with coverage
-mvn test jacoco:report
 ```
 
-### Test Coverage
-- ✅ Unit tests for all service classes
-- ✅ Integration tests for all API endpoints
-- ✅ Security tests for authentication and authorization
-- ✅ Business logic validation tests
-- ✅ Error handling tests
+Includes unit and integration tests for services and controllers.
 
-## 🔒 Error Handling
+## Error Handling
 
 The API provides consistent error responses:
 
@@ -309,88 +268,13 @@ The API provides consistent error responses:
 - `409` - Conflict (business rule violation)
 - `500` - Internal Server Error
 
-## ⚙ Configuration Profiles
 
-### Development (H2 Database)
-```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=h2
-```
 
-### Production (MySQL Database)
-```bash
-mvn spring-boot:run
-```
 
-### Test
-```bash
-mvn test
-```
 
-## 📊 Data Models
 
-### Book Entity
-```json
-{
-  "id": 1,
-  "title": "The Great Gatsby",
-  "author": "F. Scott Fitzgerald",
-  "isbn": "9780743273565",
-  "borrowed": false
-}
-```
 
-### Member Entity
-```json
-{
-  "id": 1,
-  "name": "John Doe",
-  "email": "john.doe@example.com"
-}
-```
 
-## 🔍 Validation Rules
-
-### Book Validation
-- `title`: Required, not blank
-- `author`: Required, not blank  
-- `isbn`: Required, must be 10 or 13 digits
-
-### Member Validation
-- `name`: Required, not blank
-- `email`: Required, valid email format, must be unique
-
-## 🚀 Deployment
-
-### Docker (Optional)
-```dockerfile
-FROM openjdk:17-jdk-slim
-COPY target/library-management-1.0.0.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
-```
-
-### Environment Variables
-```bash
-export SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/librarydb
-export SPRING_DATASOURCE_USERNAME=root
-export SPRING_DATASOURCE_PASSWORD=password
-export SPRING_PROFILES_ACTIVE=production
-```
-
-## 📞 Support
-
-For questions or issues, please contact the development team or create an issue in the repository.
-
----
-
-*Built with ❤️ using Spring Boot*
-        ├── LibraryApplicationTests.java
-        ├── controller/
-        │   └── LibraryControllerIntegrationTest.java
-        └── service/
-            ├── BookServiceTest.java
-            └── LibraryServiceTest.java
-```
 
 ## Contributing
 
@@ -402,4 +286,4 @@ For questions or issues, please contact the development team or create an issue 
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License

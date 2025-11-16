@@ -23,28 +23,23 @@ class LibraryServiceTest {
 
     @Test
     void borrowBook_Success() {
-        // Given
         Long bookId = 1L;
         Long memberId = 1L;
         when(memberService.existsById(memberId)).thenReturn(true);
         doNothing().when(bookService).borrowBook(bookId);
 
-        // When
         libraryService.borrowBook(bookId, memberId);
 
-        // Then
         verify(memberService).existsById(memberId);
         verify(bookService).borrowBook(bookId);
     }
 
     @Test
     void borrowBook_MemberNotFound() {
-        // Given
         Long bookId = 1L;
         Long memberId = 1L;
         when(memberService.existsById(memberId)).thenReturn(false);
 
-        // When & Then
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             libraryService.borrowBook(bookId, memberId);
         });

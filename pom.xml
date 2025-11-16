@@ -9,8 +9,8 @@
         <relativePath/>
     </parent>
     
-    <groupId>com.springbooks</groupId>
-    <artifactId>library-management</artifactId>
+    <groupId>com.reply</groupId>
+    <artifactId>library</artifactId>
     <version>1.0.0</version>
     
     <properties>

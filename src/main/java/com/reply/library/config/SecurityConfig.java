@@ -29,7 +29,6 @@ public class SecurityConfig {
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}));
         
-        // For H2 console
         http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
         
         return http.build();
@@ -48,8 +47,6 @@ public class SecurityConfig {
     
     @Bean
     public JwtDecoder jwtDecoder() {
-        // For demo purposes, using a simple secret key
-        // In production, use proper JWT issuer configuration
         String secretKey = "mySecretKeyForJWTTokenValidationThatIsAtLeast32CharsLong";
         SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
         return NimbusJwtDecoder.withSecretKey(secretKeySpec).build();

@@ -33,7 +33,7 @@ public class AuthController {
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
         response.put("type", "Bearer");
-        response.put("expires_in", "86400"); // 24 hours
+        response.put("expires_in", "86400");
         
         return ResponseEntity.ok(response);
     }

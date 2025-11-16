@@ -14,9 +14,9 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
             .info(new Info()
-                .title("SpringBooks Library Management API")
+                .title("Library Management API")
                 .version("1.0")
-                .description("A simple library management system with book borrowing functionality"))
+                .description("Library management system"))
             .addSecurityItem(new SecurityRequirement().addList("basicAuth"))
             .components(new io.swagger.v3.oas.models.Components()
                 .addSecuritySchemes("basicAuth", new SecurityScheme()
